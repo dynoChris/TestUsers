@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface BackToPresenter {
 
-    void onSuccess();
-    void onFailure();
     void inflateUsers(List<User> users);
 }

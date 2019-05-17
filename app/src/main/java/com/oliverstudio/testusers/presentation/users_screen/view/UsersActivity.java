@@ -4,8 +4,11 @@ import android.os.Bundle;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.oliverstudio.testusers.R;
+import com.oliverstudio.testusers.data.models.User;
 import com.oliverstudio.testusers.presentation.users_screen.presenter.UsersPresenter;
 import com.oliverstudio.testusers.utils.androidx_moxy.MvpAppCompatActivity;
+
+import java.util.List;
 
 public class UsersActivity extends MvpAppCompatActivity implements UsersView {
 
@@ -18,7 +21,6 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView {
         setContentView(R.layout.activity_main);
 
         mPresenter.fetchRandomUsers();
-
 
     }
 
@@ -33,7 +35,7 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView {
     }
 
     @Override
-    public void inflateUsers() {
+    public void inflateUsers(List<User> users) {
 
     }
 }

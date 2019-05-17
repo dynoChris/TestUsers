@@ -23,17 +23,8 @@ public class UsersPresenter extends MvpPresenter<UsersView> implements BackToPre
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
-    public void onFailure() {
-
-    }
-
-    @Override
     public void inflateUsers(List<User> users) {
-
+        getViewState().hideProgressBar();
+        getViewState().inflateUsers(users);
     }
 }
