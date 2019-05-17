@@ -35,8 +35,6 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
     private List<User> mUserList = new ArrayList<>();
     private UsersRecyclerAdapter mUsersRecyclerAdapter;
 
-    //vars
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

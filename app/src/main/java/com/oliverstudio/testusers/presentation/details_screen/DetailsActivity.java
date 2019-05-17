@@ -26,8 +26,6 @@ public class DetailsActivity extends AppCompatActivity {
     //general vars
     private User mUserDetails;
 
-    //vars
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
