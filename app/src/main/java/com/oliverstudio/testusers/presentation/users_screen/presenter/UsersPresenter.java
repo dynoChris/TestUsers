@@ -19,6 +19,7 @@ public class UsersPresenter extends MvpPresenter<UsersView> implements BackToPre
     }
 
     public void fetchRandomUsers() {
+        getViewState().showProgressBar();
         mRepository.fetchRandomUsers();
     }
 

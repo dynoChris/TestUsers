@@ -2,10 +2,10 @@ package com.oliverstudio.testusers.presentation.users_screen.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +25,7 @@ import java.util.List;
 public class UsersActivity extends MvpAppCompatActivity implements UsersView, AdapterCallback {
 
     //views
+    private Toolbar mToolbar;
     private ProgressBar mProgressBar;
     private RecyclerView mUsersRecyclerView;
 
@@ -39,13 +40,17 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_users);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         initViews();
 
         initRecycler();
 
-        mPresenter.fetchRandomUsers();
+        if (savedInstanceState == null) {
+            mPresenter.fetchRandomUsers();
+        }
 
     }
 
