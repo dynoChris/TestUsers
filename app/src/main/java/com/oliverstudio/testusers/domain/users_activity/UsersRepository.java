@@ -33,8 +33,8 @@ public class UsersRepository {
     @SuppressLint("CheckResult")
     public void fetchRandomUsers() {
         mApiRandomUser.getRandomUsers(ApiRandomUser.USERS_PER_PAGE)
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map(new Function<ListUsersResponse, List<User>>() {
                     @Override
                     public List<User> apply(ListUsersResponse listUsersResponse) throws Exception {
