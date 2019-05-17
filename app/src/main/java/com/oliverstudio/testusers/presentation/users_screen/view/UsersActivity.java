@@ -1,5 +1,6 @@
 package com.oliverstudio.testusers.presentation.users_screen.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.oliverstudio.testusers.R;
 import com.oliverstudio.testusers.data.models.User;
+import com.oliverstudio.testusers.presentation.details_screen.DetailsActivity;
 import com.oliverstudio.testusers.presentation.users_screen.presenter.UsersPresenter;
 import com.oliverstudio.testusers.presentation.users_screen.view.adapters.AdapterCallback;
 import com.oliverstudio.testusers.presentation.users_screen.view.adapters.UsersRecyclerAdapter;
@@ -31,6 +33,8 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
     UsersPresenter mPresenter;
     private List<User> mUserList = new ArrayList<>();
     private UsersRecyclerAdapter mUsersRecyclerAdapter;
+
+    //vars
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,8 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
 
     @Override
     public void showDetails(User user) {
-        Log.d("devptag", "showDetails: ");
+        Intent intent = new Intent(UsersActivity.this, DetailsActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 }

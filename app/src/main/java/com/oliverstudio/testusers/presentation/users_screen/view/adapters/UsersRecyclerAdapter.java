@@ -64,7 +64,7 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
                     .placeholder(R.drawable.photo_placeholder)
                     .into(mPhotoCircleImageView);
 
-            mNameTextView.setText(user.getName());
+            mNameTextView.setText(user.getFirstName());
 
             mParent.setOnClickListener(new View.OnClickListener() {
                 @Override

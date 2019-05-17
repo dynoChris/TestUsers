@@ -20,6 +20,6 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:textSize="30sp"
-        tools:text="Hanna" />
+        tools:text="Hanna"/>
 
 </LinearLayout>

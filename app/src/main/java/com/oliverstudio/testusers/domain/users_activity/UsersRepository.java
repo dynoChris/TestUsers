@@ -58,12 +58,13 @@ public class UsersRepository {
     private List<User> getUsers(List<Result> users) {
         List<User> listUsers = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
-            String name = users.get(i).getName().getFirst();
+            String firstName = users.get(i).getName().getFirst();
+            String lastName = users.get(i).getName().getLast();
             String photoUrl = users.get(i).getPicture().getLarge();
             String email = users.get(i).getEmail();
             int age = users.get(i).getDob().getAge();
             String city = users.get(i).getLocation().getCity();
-            User user = new User(name, photoUrl, email, age, city);
+            User user = new User(photoUrl, firstName, lastName, age, city, email);
             listUsers.add(user);
         }
         return listUsers;

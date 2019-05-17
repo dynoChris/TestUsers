@@ -1,28 +1,46 @@
 package com.oliverstudio.testusers.data.models;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    private String name;
+public class User implements Parcelable {
+
     private String photoUrl;
-    private String email;
+    private String firstName;
+    private String lastName;
     private int age;
     private String city;
+    private String email;
 
-    public User(String name, String photoUrl, String email, int age, String city) {
-        this.name = name;
+    public User(String photoUrl, String firstName, String lastName, int age, String city, String email) {
         this.photoUrl = photoUrl;
-        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.city = city;
+        this.email = email;
     }
 
-    public String getName() {
-        return name;
+    protected User(Parcel in) {
+        photoUrl = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
+        age = in.readInt();
+        city = in.readString();
+        email = in.readString();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getPhotoUrl() {
         return photoUrl;
@@ -32,12 +50,20 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -54,5 +80,28 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(photoUrl);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeInt(age);
+        dest.writeString(city);
+        dest.writeString(email);
     }
 }
