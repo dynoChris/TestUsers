@@ -1,6 +1,7 @@
 package com.oliverstudio.testusers.presentation.users_screen.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -12,13 +13,14 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.oliverstudio.testusers.R;
 import com.oliverstudio.testusers.data.models.User;
 import com.oliverstudio.testusers.presentation.users_screen.presenter.UsersPresenter;
+import com.oliverstudio.testusers.presentation.users_screen.view.adapters.AdapterCallback;
 import com.oliverstudio.testusers.presentation.users_screen.view.adapters.UsersRecyclerAdapter;
 import com.oliverstudio.testusers.utils.androidx_moxy.MvpAppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends MvpAppCompatActivity implements UsersView {
+public class UsersActivity extends MvpAppCompatActivity implements UsersView, AdapterCallback {
 
     //views
     private ProgressBar mProgressBar;
@@ -46,7 +48,7 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView {
     private void initRecycler() {
         mUsersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mUsersRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        mUsersRecyclerAdapter = new UsersRecyclerAdapter(mUserList);
+        mUsersRecyclerAdapter = new UsersRecyclerAdapter(mUserList, this);
         mUsersRecyclerView.setAdapter(mUsersRecyclerAdapter);
         mUsersRecyclerAdapter.notifyDataSetChanged();
     }
@@ -73,5 +75,10 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView {
         mUserList.clear();
         mUserList.addAll(users);
         mUsersRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showDetails(User user) {
+        Log.d("devptag", "showDetails: ");
     }
 }

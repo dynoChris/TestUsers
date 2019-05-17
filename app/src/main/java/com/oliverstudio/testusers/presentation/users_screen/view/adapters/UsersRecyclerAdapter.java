@@ -3,6 +3,7 @@ package com.oliverstudio.testusers.presentation.users_screen.view.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +20,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdapter.UserViewHolder> {
 
     private List<User> mUserList;
+    private AdapterCallback mCallback;
 
-    public UsersRecyclerAdapter(List<User> userList) {
+    public UsersRecyclerAdapter(List<User> userList, AdapterCallback callback) {
         mUserList = userList;
+        mCallback = callback;
     }
 
     @NonNull
@@ -33,12 +36,7 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        Picasso.get()
-                .load(mUserList.get(position).getPhotoUrl())
-                .placeholder(R.drawable.photo_placeholder)
-                .into(holder.mPhotoCircleImageView);
-
-        holder.mNameTextView.setText(mUserList.get(position).getName());
+        holder.bind(mUserList.get(position));
     }
 
     @Override
@@ -48,18 +46,32 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
 
+        private LinearLayout mParent;
         private CircleImageView mPhotoCircleImageView;
         private TextView mNameTextView;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            mParent = itemView.findViewById(R.id.item_container);
             mPhotoCircleImageView = itemView.findViewById(R.id.photo_iv);
             mNameTextView = itemView.findViewById(R.id.name_tv);
         }
+
+        public void bind(final User user) {
+            Picasso.get()
+                    .load(user.getPhotoUrl())
+                    .placeholder(R.drawable.photo_placeholder)
+                    .into(mPhotoCircleImageView);
+
+            mNameTextView.setText(user.getName());
+
+            mParent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallback.showDetails(user);
+                }
+            });
+        }
     }
 }
-
-
-
-
