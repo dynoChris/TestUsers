@@ -57,7 +57,6 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
         mUsersRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mUsersRecyclerAdapter = new UsersRecyclerAdapter(mUserList, this);
         mUsersRecyclerView.setAdapter(mUsersRecyclerAdapter);
-        mUsersRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void initViews() {
@@ -89,5 +88,11 @@ public class UsersActivity extends MvpAppCompatActivity implements UsersView, Ad
         Intent intent = new Intent(UsersActivity.this, DetailsActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPresenter.dispose();
     }
 }
