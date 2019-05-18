@@ -4,7 +4,7 @@ Fetch random users from Random User API.
 
 ### Features
   - Support landscape mode.
-  - Save state after rotate.
+  - Saving state after rotate.
   - Passing data to another activity.
   - Fetching data from server.
   
