@@ -3,10 +3,10 @@
 Fetch random users from Random User API.
 
 ### Features
-  - Support landscape mode.
-  - Saving state after rotate.
-  - Passing data to another activity.
   - Fetching data from server.
+  - Passing data to another activity.
+  - Support landscape mode.
+  - Saving state after rotate. 
   
 ### Technologies
   - MVP (Moxy)
